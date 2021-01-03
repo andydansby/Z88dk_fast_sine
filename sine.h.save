@@ -148,6 +148,29 @@ float _Dan_Ritchie_sine(float xx)
 	return (yy);
 }
 
+float bhaskaraSin(float xx) 
+{
+	//https://stackoverflow.com/questions/18662261/fastest-implementation-of-sine-cosine-and-square-root-in-c-doesnt-need-to-b/62425331#62425331
+	
+	
+	
+	xx /= DOUBLEPI;		//2 * PI = 6.28
+	xx -= (int)xx;
+	
+	if (xx <=.5)
+	{
+		t = 2 * xx * (2 * xx - 1);
+		return (PI * t) / ((-.86) * t - 1);//PI - 4 = -.86
+	}
+	else
+	{ 
+		t = 2 * (1 - xx) * (1 - 2 * xx);
+		return -(PI * t) / ((-.86) * t - 1);//PI - 4 = -.86
+	}
+}
+
+
+
 float sineStuff_sin(float xx)
 {
 	const float  B = 1.27323954;//1.2734	4/PI

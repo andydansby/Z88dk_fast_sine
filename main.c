@@ -46,7 +46,7 @@ void plot (unsigned char x, unsigned char y)
 }
 
 #include "sine.h"
-
+#include "cosine.h"
 
 
 
@@ -113,7 +113,7 @@ void printIntro (void)
     printf ("\n");
     printf ("press a key for test");
     printf ("\n\n");
-    printf ("Q - Standard Z88DK Sine");
+    printf ("Q - Standard Z88DK Sine - FREQ");
     printf ("\n");
     printf ("W - Nick Sine - NO freq");
     printf ("\n");
@@ -125,15 +125,17 @@ void printIntro (void)
     printf ("\n");
     printf ("Y - aPackOf sin - FREQ");
     printf ("\n");
-    printf ("U - Dan_Ritchie_sine - FREQ?");
+    printf ("U - Dan_Ritchie_sine - FREQ");
     printf ("\n");
-    printf ("I - sine Smile - FREQ");
+    printf ("I - Bhaskara Sin - FREQ");
     printf ("\n");
 
 
     printf ("\n");
     printf ("\n");
-    printf ("N - Standard Z88DK Cosine");
+    printf ("A - Standard Z88DK Cosine");
+    printf ("\n");
+    printf ("S - Smile Cosine");
 }
 
 void waitForKey (void)
@@ -210,18 +212,6 @@ void options (void)
             break;
 		}
 
-        if (in_key_pressed( IN_KEY_SCANCODE_u ))
-		{
-		    //R
-			in_wait_nokey();
-			zx_cls(INK_BLACK | PAPER_WHITE);
-			drawCenterLine();
-			Dan_Ritchie_sine();
-
-			waitForKey();
-            break;
-		}
-
 		if (in_key_pressed( IN_KEY_SCANCODE_y ))
 		{
 		    //R
@@ -234,15 +224,53 @@ void options (void)
             break;
 		}
 
+        if (in_key_pressed( IN_KEY_SCANCODE_u ))
+		{
+		    //R
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			Dan_Ritchie_sine();
+
+			waitForKey();
+            break;
+		}
+
+		if (in_key_pressed( IN_KEY_SCANCODE_i ))
+		{
+		    //R
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			bhaskaraSin();
+
+			waitForKey();
+            break;
+		}
 
 
-		if (in_key_pressed( IN_KEY_SCANCODE_n ))
+
+
+
+		if (in_key_pressed( IN_KEY_SCANCODE_a ))
 		{
 		    //N
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
 			z88dk_cosine();
+
+			waitForKey();
+            break;
+		}
+
+		if (in_key_pressed( IN_KEY_SCANCODE_s ))
+		{
+		    //N
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			Cosine_smile();
 
 			waitForKey();
             break;

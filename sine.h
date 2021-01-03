@@ -148,39 +148,27 @@ float _Dan_Ritchie_sine(float xx)
 	return (yy);
 }
 
-float sineStuff_sin(float xx)
+float _bhaskaraSin(float xx)
 {
-	const float  B = 1.27323954;//1.2734	4/PI
-	const float  C = 0.405284735;	//4/(PI*PI)
-	float yy;
+	//https://stackoverflow.com/questions/18662261/fastest-implementation-of-sine-cosine-and-square-root-in-c-doesnt-need-to-b/62425331#62425331
+    const float DOUBLEPI = PI + PI;
+	xx /= DOUBLEPI;		//2 * PI = 6.28
+	xx -= (int)xx;
 
-	//bring into range of - PI to + PI
-	if (xx < -PI)
-		xx += PI + PI;
-	else
-	if (xx > PI)
-		xx -= PI + PI;
-
-	if (xx < 0)
+	if (xx <=.5)
 	{
-			yy = xx * ( B + C * xx );
-
-			if ( yy < 0 )
-				yy = yy * ( -0.255 * ( yy + 1 ) + 1 );
-			else
-				yy = yy * ( 0.255 * ( yy - 1 ) + 1 );
+		t = 2 * xx * (2 * xx - 1);
+		return (PI * t) / ((-.86) * t - 1);//PI - 4 = -.86
 	}
 	else
 	{
-		yy = xx * ( B - C * xx );
-
-			if ( yy < 0 )
-				yy = yy * ( -0.255f * ( yy + 1 ) + 1 );
-			else
-				yy = yy * ( 0.255f * ( yy - 1 ) + 1 );
+		t = 2 * (1 - xx) * (1 - 2 * xx);
+		return -(PI * t) / ((-.86) * t - 1);//PI - 4 = -.86
 	}
-	return yy;
 }
+
+
+
 
 
 ////////////////////////////////////////////////////////////////////
@@ -196,7 +184,7 @@ void sineStuff_sin_nick (void)
 	{
 		sinCalc = _sineStuff_sin_nick(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -210,7 +198,7 @@ void sine_hack22 (void)
 	{
 		sinCalc = _sine_hack22(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -224,7 +212,7 @@ void quad_Sine_fast (void)
 	{
 		sinCalc = _quad_Sine_fast(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -238,7 +226,7 @@ void quad_Sine_accurate (void)
 	{
 		sinCalc = _quad_Sine_accurate(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+       y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -252,7 +240,7 @@ void sine_Smile (void)
 	{
 		sinCalc = _sine_Smile(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -266,7 +254,7 @@ void aPackOf_fast_sin (void)
 	{
 		sinCalc = _aPackOf_fast_sin(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
 		plot(x, y);
 	}
 }
@@ -280,7 +268,21 @@ void Dan_Ritchie_sine (void)
 	{
 		sinCalc = _Dan_Ritchie_sine(x * freq * PI / xWidth);
         YY = ( ( sinCalc + 1.0) * (halfHeight));
-        y = (int)  YY;
+        y = (int)YY;
+		plot(x, y);
+	}
+}
+
+void bhaskaraSin (void)
+{
+    // this routine IS compatible with frequency yet
+	//freq = 4.0;// 2.0
+
+	for (x=0; x <= xWidth; x++)
+	{
+		sinCalc = _bhaskaraSin(x * freq * PI / xWidth);
+        YY = ( ( sinCalc + 1.0) * (halfHeight));
+        y = (int)YY;
 		plot(x, y);
 	}
 }
