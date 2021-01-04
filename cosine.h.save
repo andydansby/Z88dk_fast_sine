@@ -1,7 +1,9 @@
 float _cosine (float xx)
 {
+    //cos(x) = sin(x + pi/2)
 	return _sine_Smile(xx + PI / 2);
 }
+//cosine needs to be reformulated
 
 void Cosine_smile (void)
 {

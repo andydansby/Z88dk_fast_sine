@@ -47,10 +47,29 @@ void plot (unsigned char x, unsigned char y)
 
 #include "sine.h"
 #include "cosine.h"
+#include "tangent.h"
 
 
 
+float tangent_caller ()//standard SIN calculation
+{
+	//sinCalc =  tan(x * PI / xWidth) / freq;
+	sinCalc = tan(PI / x);//close
+	YY = ( ( sinCalc + 1.0) * (yHeight - 1) / 2.0);
+	y = (int)  YY;
+	return y;
+}
 
+void z88dk_tangent (void)
+{
+    intrinsic_label(tangent_caller_start);
+	for (x=0; x <= xWidth; x++)
+	{
+		tangent_caller();
+		plot(x, y);
+	}
+	intrinsic_label(tangent_caller_end);
+}
 
 
 float sine_caller ()//standard SIN calculation
@@ -136,6 +155,11 @@ void printIntro (void)
     printf ("A - Standard Z88DK Cosine");
     printf ("\n");
     printf ("S - Smile Cosine");
+    printf ("\n");
+    printf ("D - Standard Z88DK Tangent");
+    printf ("\n");
+    printf ("F - Smile Tangent");
+    printf ("\n");
 }
 
 void waitForKey (void)
@@ -254,7 +278,7 @@ void options (void)
 
 		if (in_key_pressed( IN_KEY_SCANCODE_a ))
 		{
-		    //N
+		    //A
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
@@ -266,11 +290,35 @@ void options (void)
 
 		if (in_key_pressed( IN_KEY_SCANCODE_s ))
 		{
-		    //N
+		    //S
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
 			Cosine_smile();
+
+			waitForKey();
+            break;
+		}
+
+		if (in_key_pressed( IN_KEY_SCANCODE_d ))
+		{
+		    //D
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			z88dk_tangent();
+
+			waitForKey();
+            break;
+		}
+
+		if (in_key_pressed( IN_KEY_SCANCODE_f ))
+		{
+		    //F
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			Tangent_smile();
 
 			waitForKey();
             break;
