@@ -9,7 +9,7 @@ zcc +zx -vn -SO3 -m -lm -clib=new main.c -o sine -startup=9 -create-app
 
 rem  (generate sin.tap)
 
-del "main_CODE.bin"
-del "main_UNASSIGNED.bin"
+del "sine_CODE.bin"
+del "sine_UNASSIGNED.bin"
 
 rem rename main.tap sine.tap

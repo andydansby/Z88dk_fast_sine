@@ -18,6 +18,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../sine.h" />
+		<Unit filename="../tangent.h" />
 		<Unit filename="../timer.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

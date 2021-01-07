@@ -22,7 +22,7 @@ void Cosine_smile (void)
 */
 
 
-float _tangent (float xx)
+float _Smiletangent (float xx)
 {
 	//return _sine_Smile(xx + PI / 2) / _cosine(xx + PI / 2);
 	//float yy;
@@ -38,8 +38,17 @@ void Tangent_smile (void)
 
 	for (x=0; x <= xWidth; x++)
 	{
-		sinCalc = _tangent(PI / x);
-        YY = ( ( sinCalc + 1.0) * (halfHeight));
+		sinCalc = _Smiletangent((x * PI) / (xWidth - freq));
+
+		if (sinCalc > freq)
+            sinCalc = freq;
+        if (sinCalc < -freq)
+            sinCalc = -freq;
+
+        sinCalc += freq;
+
+        YY = sinCalc / (freq + freq) * yHeight;
+
         y = (int)YY;
 		plot(x, y);
 	}
