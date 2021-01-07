@@ -1,3 +1,6 @@
+#ifndef SINE_H
+#define SINE_H
+
 #define ABS(N) ((N<0)?(-N):(N))
 
 float _sineStuff_sin_nick(float xx)
@@ -286,4 +289,8 @@ void bhaskaraSin (void)
 		plot(x, y);
 	}
 }
+
+#endif
+//leave blank line after
+
 
