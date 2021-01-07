@@ -164,41 +164,13 @@ void drawCenterLine (void)
 	}
 }
 
-void printPage2(void)
-{
-    zx_cls(PAPER_WHITE | INK_BLUE);
-    freq = 2;
-    printf("\x16\x01\x02");
-    printf ("\n");
-    printf ("Accuracy of Sine Routines");
-    printf ("\n");
-    printf ("Since Sine,Cosine and Tangent are all based");
-    printf ("\n");
-    printf ("on one another, we will check sine only");
-    printf ("\n");
-    printf ("\n");
-    printf ("W - Nick Sine vs Z88dk Sine");
-    printf ("\n");
-    printf ("E - Quadratic Fast vs Z88dk Sine");
-    printf ("\n");
-    printf ("R - Quadratic Accurate vs Z88dk Sine");
-    printf ("\n");
-    printf ("T - sine Smile vs Z88dk Sine");
-    printf ("\n");
-    printf ("Y - aPackOf sin vs Z88dk Sine");
-    printf ("\n");
-    printf ("U - Dan_Ritchie_sine vs Z88dk Sine");
-    printf ("\n");
-    printf ("I - Bhaskara Sin vs Z88dk Sine");
-    printf ("\n");
-    printf ("\n");
-    printf ("M - Prior Page");
-}
+
 
 
 void printPage1(void)
 {
     zx_cls(PAPER_WHITE | INK_BLUE);
+    zx_border (2);
     printf("\x16\x01\x02");
 
     printf ("Welcome to the Fast Sine and Cosine tester");
@@ -218,13 +190,13 @@ void printPage1(void)
     printf ("\n");
     printf ("R - Quadratic Accurate - NO freq");
     printf ("\n");
-    printf ("T - sine Smile - FREQ");
+    printf ("T - Smile Sine - FREQ");
     printf ("\n");
-    printf ("Y - aPackOf sin - FREQ");
+    printf ("Y - aPackOf Sine - FREQ");
     printf ("\n");
-    printf ("U - Dan_Ritchie_sine - FREQ");
+    printf ("U - Dan Ritchie Sine - FREQ");
     printf ("\n");
-    printf ("I - Bhaskara Sin - FREQ");
+    printf ("I - Bhaskara Sine - FREQ");
     printf ("\n");
     printf ("\n");
     printf ("A - Standard Z88DK Cosine");
@@ -235,9 +207,48 @@ void printPage1(void)
     printf ("\n");
     printf ("F - Smile Tangent");
     printf ("\n");
+    printf ("G - Standard Z88DK ASIN/ACOS/ATAN");
+    printf ("\n");
+    printf ("H - Smile ASIN/ACOS/ATAN");
+    printf ("\n");
     printf ("\n");
 
-    printf ("N - Next Page Visual Accuracy");
+    printf ("K - Next Page Visual Accuracy");
+}
+
+void printPage2(void)
+{
+    zx_cls(PAPER_WHITE | INK_BLUE);
+    freq = 2;
+    printf("\x16\x01\x02");
+    printf ("\n");
+    printf ("\n");
+    printf ("Accuracy of Sine Routines");
+    printf ("\n");
+    printf ("Since Sine,Cosine and Tangent are all based");
+    printf ("\n");
+    printf ("on one another, we will check sine only");
+    printf ("\n");
+    printf ("\n");
+    printf ("Z - Nick Sine vs Z88dk Sine");
+    printf ("\n");
+    printf ("X - Quadratic Fast vs Z88dk Sine");
+    printf ("\n");
+    printf ("C - Quadratic Accurate vs Z88dk Sine");
+    printf ("\n");
+    printf ("V - Smile Sine vs Z88dk Sine");
+    printf ("\n");
+    printf ("B - aPackOf Sine vs Z88dk Sine");
+    printf ("\n");
+    printf ("N - Dan_Ritchie Sine vs Z88dk Sine");
+    printf ("\n");
+    printf ("M - Bhaskara Sine vs Z88dk Sine");
+    printf ("\n");
+    printf ("\n");
+    printf ("L - Prior Page");
+
+
+
 
 }
 
@@ -257,7 +268,7 @@ void options (void)
         //key presses
 
         //Frequency adjustments
-        if (in_key_pressed( IN_KEY_SCANCODE_1 ))
+        if (in_key_pressed( IN_KEY_SCANCODE_1 ))    //freq 1
 		{
 		    //1
 			in_wait_nokey();
@@ -265,7 +276,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_2 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_2 ))    //freq 2
 		{
 		    //2
 			in_wait_nokey();
@@ -273,7 +284,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_3 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_3 ))    //freq 3
 		{
 		    //3
 			in_wait_nokey();
@@ -281,7 +292,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_4 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_4 ))    //freq 4
 		{
 		    //4
 			in_wait_nokey();
@@ -289,7 +300,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_5 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_5 ))    //freq 5
 		{
 		    //5
 			in_wait_nokey();
@@ -297,7 +308,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_6 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_6 ))    //freq 6
 		{
 		    //6
 			in_wait_nokey();
@@ -305,7 +316,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_7 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_7 ))    //freq 7
 		{
 		    //7
 			in_wait_nokey();
@@ -313,7 +324,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_8 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_8 ))    //freq 8
 		{
 		    //8
 			in_wait_nokey();
@@ -321,7 +332,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_9 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_9 ))    //freq 9
 		{
 		    //9
 			in_wait_nokey();
@@ -329,7 +340,7 @@ void options (void)
 			printPage1();
 			break;
 		}
-		if (in_key_pressed( IN_KEY_SCANCODE_0 ))
+		if (in_key_pressed( IN_KEY_SCANCODE_0 ))    //freq 10
 		{
 		    //0
 			in_wait_nokey();
@@ -340,8 +351,8 @@ void options (void)
         //end Frequency adjustments
 
 
-        //SINE algorythms
-        if (in_key_pressed( IN_KEY_SCANCODE_q ))
+        //SINE algorithms
+        if (in_key_pressed( IN_KEY_SCANCODE_q ))    //z88dk Sine
 		{
 		    //Q
 			in_wait_nokey();
@@ -353,7 +364,7 @@ void options (void)
 			break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_w ))
+		if (in_key_pressed( IN_KEY_SCANCODE_w ))    //Nick Sine
 		{
 		    //W
 			in_wait_nokey();
@@ -365,7 +376,7 @@ void options (void)
             break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_e ))
+		if (in_key_pressed( IN_KEY_SCANCODE_e ))    //fast quad sine
 		{
 		    //E
 			in_wait_nokey();
@@ -377,7 +388,7 @@ void options (void)
             break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_r ))
+		if (in_key_pressed( IN_KEY_SCANCODE_r ))    //accurate quad sine
 		{
 		    //R
 			in_wait_nokey();
@@ -389,7 +400,7 @@ void options (void)
             break;
 		}
 
-        if (in_key_pressed( IN_KEY_SCANCODE_t ))
+        if (in_key_pressed( IN_KEY_SCANCODE_t ))    //Smile quad sine
 		{
 		    //R
 			in_wait_nokey();
@@ -401,7 +412,7 @@ void options (void)
             break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_y ))
+		if (in_key_pressed( IN_KEY_SCANCODE_y ))    //aPackOf sine
 		{
 		    //R
 			in_wait_nokey();
@@ -413,7 +424,7 @@ void options (void)
             break;
 		}
 
-        if (in_key_pressed( IN_KEY_SCANCODE_u ))
+        if (in_key_pressed( IN_KEY_SCANCODE_u ))    //Dan Ritchie sine
 		{
 		    //R
 			in_wait_nokey();
@@ -425,7 +436,7 @@ void options (void)
             break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_i ))
+		if (in_key_pressed( IN_KEY_SCANCODE_i ))    //Bhaskara Sine
 		{
 		    //R
 			in_wait_nokey();
@@ -436,10 +447,10 @@ void options (void)
 			waitForKey();
             break;
 		}
-        //end SINE algorythms
+        //end SINE algorithms
 
 
-        //COSINE algorythms
+        //COSINE algorithms
 		if (in_key_pressed( IN_KEY_SCANCODE_a ))
 		{
 		    //A
@@ -465,7 +476,7 @@ void options (void)
 		}
 		//end COSINE algorithms
 
-        //TANGENT algorythms
+        //TANGENT algorithms
 		if (in_key_pressed( IN_KEY_SCANCODE_d ))
 		{
 		    //D
@@ -489,10 +500,98 @@ void options (void)
 			waitForKey();
             break;
 		}
-		//end TANGENT algorythms
+		//end TANGENT algorithms
+
+
+		if (in_key_pressed( IN_KEY_SCANCODE_z ))
+        {
+            //Z
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			sineStuff_sin_nick();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_x ))
+        {
+            //X
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			quad_Sine_fast();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_c ))
+        {
+            //C
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			quad_Sine_accurate();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_v ))
+        {
+            //V
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			sine_Smile();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_b ))
+        {
+            //B
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			aPackOf_fast_sin ();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_n ))
+        {
+            //V
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			Dan_Ritchie_sine();
+			z88dk_sine ();
+			waitForKey();
+			break;
+        }
+
+        if (in_key_pressed( IN_KEY_SCANCODE_m ))
+        {
+            //B
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			aPackOf_fast_sin ();
+			bhaskaraSin();
+			waitForKey();
+			break;
+        }
+
+
+
 
 		//printPage2
-		if (in_key_pressed( IN_KEY_SCANCODE_n ))
+		if (in_key_pressed( IN_KEY_SCANCODE_k ))
 		{
 		    //N
 			in_wait_nokey();
@@ -501,7 +600,7 @@ void options (void)
             break;
 		}
 
-		if (in_key_pressed( IN_KEY_SCANCODE_m ))
+		if (in_key_pressed( IN_KEY_SCANCODE_l ))
 		{
 		    //m
 			in_wait_nokey();
@@ -523,7 +622,7 @@ void main()
 	zx_cls(PAPER_WHITE | INK_BLUE);
 
 	freq = 2.0;
-	yHeight = 172;
+	yHeight = 191;
 	xWidth = 255;
 	halfHeight = yHeight / 2;
 
