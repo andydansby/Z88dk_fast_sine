@@ -11,7 +11,8 @@
 
 
 
-#pragma printf %f
+#pragma printf %f %ld %d
+//#pragma printf %ld
 
 #include <arch/zx.h>
 #include <math.h>
@@ -33,6 +34,13 @@ int halfHeight;
 unsigned char yHeight;//height of the display
 unsigned char xWidth;//width of the display
 
+long microSec;
+long seconds;
+long minutes;
+long timeStart;
+long timeEnd;
+long timeDiff;
+
 void plot (unsigned char x, unsigned char y)
 {
 	//just in case you are testing a new algorithm
@@ -48,7 +56,7 @@ void plot (unsigned char x, unsigned char y)
 #include "sine.h"
 #include "cosine.h"
 #include "tangent.h"
-
+#include "timer.h"
 
 
 
@@ -124,7 +132,6 @@ float tangent_caller99 ()//standard tangent calculation
 	return y;
 }
 
-
 float tangent_caller ()//standard tangent calculation
 {
 	sinCalc = tan((x * PI) / xWidth);// ok
@@ -154,7 +161,6 @@ void z88dk_tangent (void)
 	intrinsic_label(tangent_caller_end);
 }
 
-
 void drawCenterLine (void)
 {
     //draw straight line
@@ -163,9 +169,6 @@ void drawCenterLine (void)
 		plot(x, halfHeight);
 	}
 }
-
-
-
 
 void printPage1(void)
 {
@@ -254,7 +257,7 @@ void printPage2(void)
 
 void waitForKey (void)
 {
-    printf("\x16\x01\x02");
+    printf("\x16\x04\x04");
     printf ("Press a Key");
     printf ("\n");
     //in_WaitForKey();
@@ -358,8 +361,12 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
-			z88dk_sine ();
-
+			timerStart();
+			z88dk_sine ();//routine
+            timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
+            //printf("\n\n  time = %d", timeEnd);
 			waitForKey();
 			break;
 		}
@@ -370,8 +377,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
-			sineStuff_sin_nick();
-
+            timerStart();
+			sineStuff_sin_nick();//routine
+            timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -382,8 +392,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
-			quad_Sine_fast();
-
+			timerStart();
+			quad_Sine_fast();//routine
+            timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -394,8 +407,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
-			quad_Sine_accurate();
-
+            timerStart();
+			quad_Sine_accurate();//routine
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -406,8 +422,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
-			sine_Smile();
-
+            timerStart();
+			sine_Smile();//routine
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -418,8 +437,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			aPackOf_fast_sin();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -430,8 +452,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			Dan_Ritchie_sine();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -442,8 +467,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			bhaskaraSin();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -457,8 +485,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			z88dk_cosine();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -469,8 +500,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			Cosine_smile();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -483,8 +517,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			z88dk_tangent();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
@@ -495,8 +532,11 @@ void options (void)
 			in_wait_nokey();
 			zx_cls(INK_BLACK | PAPER_WHITE);
 			drawCenterLine();
+			timerStart();
 			Tangent_smile();
-
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
 			waitForKey();
             break;
 		}
