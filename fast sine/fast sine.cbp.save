@@ -13,6 +13,9 @@
 				<Option compiler="null" />
 			</Target>
 		</Build>
+		<Unit filename="../acos.h" />
+		<Unit filename="../asin.h" />
+		<Unit filename="../atan.h" />
 		<Unit filename="../cosine.h" />
 		<Unit filename="../main.c">
 			<Option compilerVar="CC" />

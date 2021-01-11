@@ -21,8 +21,7 @@ void timerStart (void)
     //clear to 0
     cpu_bpoke(23674,0);//minutes
     cpu_bpoke(23673,0);//seconds
-    cpu_bpoke(23672,0
-               );//microSec
+    cpu_bpoke(23672,7);//microSec
 
     microSec = (long)cpu_bpeek(23672);
     seconds  = (long)cpu_bpeek(23673);

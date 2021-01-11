@@ -27,7 +27,7 @@
 
 int x, y;
 float t;
-float YY;
+float YY, yy;
 float freq = 2;
 float sinCalc;
 int halfHeight;
@@ -56,6 +56,11 @@ void plot (unsigned char x, unsigned char y)
 #include "sine.h"
 #include "cosine.h"
 #include "tangent.h"
+#include "asin.h"
+#include "acos.h"
+#include "atan.h"
+
+
 #include "timer.h"
 
 
@@ -159,6 +164,71 @@ void z88dk_tangent (void)
 		plot(x, y);
 	}
 	intrinsic_label(tangent_caller_end);
+}
+
+
+float asin_caller ()//standard tangent calculation
+{
+	yy = (float)x / xWidth;
+	yy = 2 * (yy) - 1;// change range from -1 to 1
+
+	sinCalc = asin(yy);
+
+	//normalize range
+	yy = ABS((sinCalc - (-PI)) / (PI - (-PI)));
+    yy = ( ( yy ) * ((yHeight - 1) ));
+
+	y = (int)yy;
+	return y;
+}
+
+
+float acos_caller ()//standard tangent calculation
+{
+	yy = (float)x / xWidth;
+	yy = 2 * (yy) - 1;// change range from -1 to 1
+
+	sinCalc = acos(yy);
+
+	//normalize range
+	yy = ABS((sinCalc - (-PI)) / (PI - (-PI)));
+    yy = ( ( yy ) * (yHeight  / 2 + 31));// a bit of funky tweaking to pull in right range
+
+	y = (int)yy;
+	return y;
+}
+
+float atan_caller ()//standard tangent calculation
+{
+    yy = (float)x / xWidth;
+	yy = 2 * (yy) - 1;// change range from -1 to 1
+
+	sinCalc = atan(yy);
+
+	//normalize range
+	yy = ABS((sinCalc - (-PI)) / (PI - (-PI)));
+    yy = ( ( yy ) * ((yHeight - 1) ));
+
+	y = (int)yy;
+	return y;
+}
+
+
+void z88dk_asin_acos_atan (void)
+{
+    //intrinsic_label(tangent_caller_start);
+	for (x=0; x <= xWidth; x++)
+	{
+		asin_caller();
+		plot(x, y);
+
+		acos_caller();
+		plot(x, y);
+
+		atan_caller();
+		plot(x, y);
+	}
+	//intrinsic_label(tangent_caller_end);
 }
 
 void drawCenterLine (void)
@@ -541,6 +611,41 @@ void options (void)
             break;
 		}
 		//end TANGENT algorithms
+
+		//combo asin acos atan
+		if (in_key_pressed( IN_KEY_SCANCODE_g ))
+		{
+		    //D
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			timerStart();
+			z88dk_asin_acos_atan();
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
+			waitForKey();
+            break;
+		}
+
+		if (in_key_pressed( IN_KEY_SCANCODE_h ))
+		{
+		    //D
+			in_wait_nokey();
+			zx_cls(INK_BLACK | PAPER_WHITE);
+			drawCenterLine();
+			timerStart();
+
+			asine_smile();
+
+			timerEnd();
+            printf("\x16\x01\x01");
+            printf("\n\ntime = %ld MS", timeDiff);
+			waitForKey();
+            break;
+		}
+
+
 
 
 		if (in_key_pressed( IN_KEY_SCANCODE_z ))

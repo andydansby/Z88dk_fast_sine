@@ -1,0 +1,20 @@
+float _acos (float xx)
+{
+    //cos(x) = sin(x + pi/2)
+	return _acos_Smile(xx + PI / 2);
+}
+//cosine needs to be reformulated
+
+void Cosine_smile (void)
+{
+    // this routine IS compatible with frequency yet
+	//freq = 4.0;// 2.0
+
+	for (x=0; x <= xWidth; x++)
+	{
+		sinCalc = _acos(x * freq * PI / xWidth);
+        YY = ( ( sinCalc + 1.0) * (halfHeight));
+        y = (int)YY;
+		plot(x, y);
+	}
+}
